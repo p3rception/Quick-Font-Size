@@ -1,0 +1,342 @@
+{
+  "name": "focus-font-size",
+  "displayName": "Focus Font Size",
+  "description": "Cmd/Ctrl +/- changes the font size of the focused area (editor, chat, terminal) instead of zooming the whole window.",
+  "version": "1.0.0",
+  "publisher": "pergelidis",
+  "author": "Dimitris Pergelidis",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "font size",
+    "zoom",
+    "status bar",
+    "chat",
+    "terminal",
+    "claude",
+    "copilot"
+  ],
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "extension.js",
+  "files": [
+    "extension.js",
+    "images/icon.png",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "focusFontSize.increase",
+        "title": "Increase",
+        "category": "Font Size"
+      },
+      {
+        "command": "focusFontSize.decrease",
+        "title": "Decrease",
+        "category": "Font Size"
+      },
+      {
+        "command": "focusFontSize.reset",
+        "title": "Reset to Default",
+        "category": "Font Size"
+      },
+      {
+        "command": "focusFontSize.chooseArea",
+        "title": "Choose Status Bar Area",
+        "category": "Font Size"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+shift+=",
+        "mac": "cmd+shift+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+shift+-",
+        "mac": "cmd+shift+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+numpad0",
+        "mac": "cmd+numpad0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "editor"
+        }
+      },
+      {
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+shift+=",
+        "mac": "cmd+shift+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+shift+-",
+        "mac": "cmd+shift+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+numpad0",
+        "mac": "cmd+numpad0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "chat"
+        },
+        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+shift+=",
+        "mac": "cmd+shift+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+shift+-",
+        "mac": "cmd+shift+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+numpad0",
+        "mac": "cmd+numpad0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "terminal.integrated"
+        },
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+alt+=",
+        "mac": "cmd+alt+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+shift+=",
+        "mac": "cmd+alt+shift+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+numpad_add",
+        "mac": "cmd+alt+numpad_add",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+-",
+        "mac": "cmd+alt+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+shift+-",
+        "mac": "cmd+alt+shift+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+numpad_subtract",
+        "mac": "cmd+alt+numpad_subtract",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+0",
+        "mac": "cmd+alt+0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "*"
+        }
+      },
+      {
+        "key": "ctrl+alt+numpad0",
+        "mac": "cmd+alt+numpad0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "*"
+        }
+      }
+    ]
+  }
+}
