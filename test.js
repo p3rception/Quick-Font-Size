@@ -3,11 +3,18 @@ const assert = require('assert');
 const Module = require('module');
 
 const T = { Global: 1, Workspace: 2 };
+// Setting id -> scope values. Unlisted settings are unknown to this VS Code (e.g. chat.fontSize).
 const store = {
-  editor: { defaultValue: 14, globalValue: 14 },
-  chat: {}, // setting unknown to this VS Code version
-  'terminal.integrated': { defaultValue: 12, workspaceValue: 20 },
+  'editor.fontSize': { defaultValue: 14, globalValue: 14 },
+  'editor.lineHeight': { defaultValue: 0, globalValue: 22 },
+  'terminal.integrated.fontSize': { defaultValue: 12, workspaceValue: 20 },
+  'terminal.integrated.lineHeight': { defaultValue: 1 },
+  'focusFontSize.step': { defaultValue: 1 },
+  'focusFontSize.minimum': { defaultValue: 6 },
+  'focusFontSize.maximum': { defaultValue: 100 },
 };
+const val = (id) => { const s = store[id] ?? {}; return s.workspaceValue ?? s.globalValue ?? s.defaultValue; };
+
 const commands = {};
 const noop = () => ({ dispose() {} });
 const vscode = {
@@ -27,11 +34,11 @@ const vscode = {
   workspace: {
     onDidChangeConfiguration: noop,
     getConfiguration: (area) => ({
-      inspect: () => ({ ...store[area] }),
-      get: () => { const s = store[area]; return s.workspaceValue ?? s.globalValue ?? s.defaultValue; },
+      inspect: (key) => store[`${area}.${key}`] && { ...store[`${area}.${key}`] },
+      get: (key) => val(`${area}.${key}`),
       // Async like the real API: a read before this resolves sees the old value.
-      update: (_, v, t) => new Promise((r) => setTimeout(() => {
-        store[area][t === T.Workspace ? 'workspaceValue' : 'globalValue'] = v;
+      update: (key, v, t) => new Promise((r) => setTimeout(() => {
+        (store[`${area}.${key}`] ??= {})[t === T.Workspace ? 'workspaceValue' : 'globalValue'] = v;
         r();
       }, 5)),
     }),
@@ -52,21 +59,40 @@ require('./extension').activate({
   const reset = commands['focusFontSize.reset'];
 
   await Promise.all([1, 2, 3].map(() => inc({ area: 'editor' })));
-  assert.strictEqual(store.editor.globalValue, 17, 'fast repeats must not be lost');
+  assert.strictEqual(val('editor.fontSize'), 17, 'fast repeats must not be lost');
+  assert.strictEqual(val('editor.lineHeight'), 28, 'pixel line height scales with the font (rounded each step)');
 
-  await Promise.all(Array.from({ length: 30 }, () => dec())); // omitted area = status bar area (editor)
-  assert.strictEqual(store.editor.globalValue, 6, 'clamped at minimum');
+  await Promise.all([1, 2, 3].map(() => dec())); // omitted area = status bar area (editor)
+  assert.strictEqual(val('editor.lineHeight'), 22, 'line height returns to its start without drift');
+
+  store['editor.lineHeight'].globalValue = 9;
+  await Promise.all(Array.from({ length: 30 }, () => dec()));
+  assert.strictEqual(val('editor.fontSize'), 6, 'clamped at minimum');
+  assert.strictEqual(val('editor.lineHeight'), 8, 'pixel line height never drops into multiplier range');
+
+  store['focusFontSize.step'].globalValue = 0.1;
+  store['focusFontSize.maximum'].globalValue = 6.2;
+  await Promise.all(Array.from({ length: 5 }, () => inc()));
+  assert.strictEqual(val('editor.fontSize'), 6.2, 'custom step without float noise, clamped at custom maximum');
+  store['focusFontSize.step'].globalValue = -3;
+  store['focusFontSize.maximum'].globalValue = undefined;
+  await inc();
+  assert.strictEqual(val('editor.fontSize'), 7.2, 'invalid step falls back to 1');
 
   await inc({ area: 'terminal.integrated' });
-  assert.strictEqual(store['terminal.integrated'].workspaceValue, 21, 'writes to the workspace override');
+  assert.strictEqual(store['terminal.integrated.fontSize'].workspaceValue, 21, 'writes to the workspace override');
+  assert.strictEqual(store['terminal.integrated.lineHeight'].globalValue, undefined, 'multiplier line height untouched');
   assert.strictEqual(state.area, 'terminal.integrated', 'status bar follows the changed area');
 
   await inc({ area: 'chat' });
-  assert.deepStrictEqual(store.chat, {}, 'unsupported setting left alone');
+  assert.strictEqual(store['chat.fontSize'], undefined, 'unsupported setting left alone');
 
+  store['editor.fontSize'].globalValue = 28;
+  store['editor.lineHeight'].globalValue = 44;
   await reset({ area: '*' });
-  assert.strictEqual(store.editor.globalValue, undefined);
-  assert.strictEqual(store['terminal.integrated'].workspaceValue, undefined);
+  assert.strictEqual(store['editor.fontSize'].globalValue, undefined);
+  assert.strictEqual(val('editor.lineHeight'), 22, 'reset scales line height to the default font');
+  assert.strictEqual(store['terminal.integrated.fontSize'].workspaceValue, undefined);
 
   console.log('ok');
 })();

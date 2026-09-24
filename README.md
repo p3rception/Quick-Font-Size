@@ -7,10 +7,14 @@
 | Editor (and anywhere else) | `editor.fontSize` |
 | Chat (Copilot Chat, Claude Code) | `chat.fontSize` |
 | Terminal | `terminal.integrated.fontSize` |
+| Debug Console | `debug.console.fontSize` |
+| Markdown Preview | `markdown.preview.fontSize` |
 
-Add `Alt` (`Cmd+Alt +`, `Cmd+Alt -`, `Cmd+Alt 0`) to change all three at once.
+Add `Alt` (`Cmd+Alt +`, `Cmd+Alt -`, `Cmd+Alt 0`) to change all areas at once.
 
 Sizes are saved to your settings, so they persist across windows and restarts. If a workspace overrides a size, the workspace value is changed, so the change is always visible.
+
+If `editor.lineHeight` or `debug.console.lineHeight` is set in pixels, it is scaled along with the font so text keeps the same spacing. Line heights set as a multiplier already follow the font and are left alone.
 
 ## Status bar
 
@@ -18,11 +22,11 @@ The status bar shows the font size with an icon for its area: `−  [editor icon
 
 - Minus and plus change the size of the area shown.
 - Click the size to choose another area.
-- Hover over the size to see all three sizes, switch area, or reset one to its default.
+- Hover over the size to see every area's size, switch area, or reset one to its default.
 
-The status bar follows focus: clicking or typing in an editor, switching tabs (including a chat or terminal opened as a tab), and running a command in the terminal all switch it. VS Code reports no focus events for sidebar and panel views, so for chat in the sidebar the status bar switches when you first press `Cmd +` or `Cmd -` there.
+The status bar follows focus: clicking or typing in an editor, switching tabs (including a chat or terminal opened as a tab), and running a command in the terminal all switch it. VS Code reports no focus events for sidebar and panel views, so for chat in the sidebar and the debug console the status bar switches when you first press `Cmd +` or `Cmd -` there.
 
-Hide any of the three items by right-clicking the status bar.
+Hide any of the three status bar items by right-clicking the status bar.
 
 ## Commands
 
@@ -33,7 +37,7 @@ Hide any of the three items by right-clicking the status bar.
 | Font Size: Reset to Default | `Cmd 0`, `Cmd Numpad0` |
 | Font Size: Choose Status Bar Area | |
 
-Each command accepts an optional `{ "area": "editor" | "chat" | "terminal.integrated" | "*" }` argument, so you can bind your own keys:
+Each command accepts an optional `{ "area": "editor" | "chat" | "terminal.integrated" | "debug.console" | "markdown.preview" | "*" }` argument, so you can bind your own keys:
 
 ```json
 { "key": "cmd+alt+up", "command": "focusFontSize.increase", "args": { "area": "chat" } }
@@ -41,7 +45,13 @@ Each command accepts an optional `{ "area": "editor" | "chat" | "terminal.integr
 
 Without `area`, a command acts on the area shown in the status bar.
 
-Sizes are kept between 6 and 100.
+## Settings
+
+| Setting | Default | |
+|---|---|---|
+| `focusFontSize.step` | `1` | Amount each increase or decrease changes the size by, e.g. `0.5` or `2`. |
+| `focusFontSize.minimum` | `6` | Smallest size decrease goes to. |
+| `focusFontSize.maximum` | `100` | Largest size increase goes to. |
 
 ## Remote development
 

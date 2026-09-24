@@ -5,35 +5,59 @@ const AREAS = {
   editor: { label: 'Editor', icon: 'file-code' },
   chat: { label: 'Chat', icon: 'comment-discussion' },
   'terminal.integrated': { label: 'Terminal', icon: 'terminal' },
+  'debug.console': { label: 'Debug Console', icon: 'debug-console' },
+  'markdown.preview': { label: 'Markdown Preview', icon: 'markdown' },
 };
-const MIN = 6;
-const MAX = 100;
 
 const cfg = (area) => vscode.workspace.getConfiguration(area);
 const get = (area) => cfg(area).get('fontSize');
 
+// User settings, guarded against nonsense values the settings UI only warns about.
+const options = () => {
+  const c = cfg('focusFontSize');
+  const num = (key, fallback) => (Number.isFinite(c.get(key)) ? c.get(key) : fallback);
+  const step = num('step', 1);
+  const min = Math.max(1, num('minimum', 6));
+  return { step: step > 0 ? step : 1, min, max: Math.max(min, num('maximum', 100)) };
+};
+
 // Write to the scope the value comes from, so a workspace override does not hide the change.
-const scope = (area) =>
-  cfg(area).inspect('fontSize')?.workspaceValue !== undefined
+const scope = (area, key) =>
+  cfg(area).inspect(key)?.workspaceValue !== undefined
     ? vscode.ConfigurationTarget.Workspace
     : vscode.ConfigurationTarget.Global;
+
+// A lineHeight of 8 or more is pixels (editor, debug console) and would not follow the font,
+// so scale it by the same ratio. Smaller values are multipliers or 0 (auto) and already follow.
+const scaleLineHeight = async (area, from, to) => {
+  const lh = cfg(area).get('lineHeight');
+  if (typeof lh === 'number' && lh >= 8 && from > 0 && to > 0 && to !== from) {
+    // Never below 8: VS Code would read it as a multiplier.
+    await cfg(area).update('lineHeight', Math.max(8, Math.round((lh * to) / from)), scope(area, 'lineHeight'));
+  }
+};
 
 // Serialize read-modify-write so fast key repeats are not lost to a stale read.
 let queue = Promise.resolve();
 const run = (fn) =>
   (queue = queue.then(fn).catch((e) => vscode.window.showErrorMessage(`Focus Font Size: ${e.message}`)));
 
-const change = (area, delta) =>
+const change = (area, direction) =>
   run(async () => {
     const size = get(area);
     if (typeof size !== 'number') return; // e.g. chat.fontSize on older VS Code
-    const next = Math.min(MAX, Math.max(MIN, size + delta));
-    if (next !== size) await cfg(area).update('fontSize', next, scope(area));
+    const { step, min, max } = options();
+    // Round away float noise from steps like 0.1.
+    const next = Math.round(Math.min(max, Math.max(min, size + direction * step)) * 100) / 100;
+    if (next === size) return;
+    await scaleLineHeight(area, size, next);
+    await cfg(area).update('fontSize', next, scope(area, 'fontSize'));
   });
 
 const reset = (area) =>
   run(async () => {
-    const { globalValue, workspaceValue } = cfg(area).inspect('fontSize') ?? {};
+    const { globalValue, workspaceValue, defaultValue } = cfg(area).inspect('fontSize') ?? {};
+    await scaleLineHeight(area, get(area), defaultValue);
     if (workspaceValue !== undefined) await cfg(area).update('fontSize', undefined, vscode.ConfigurationTarget.Workspace);
     if (globalValue !== undefined) await cfg(area).update('fontSize', undefined, vscode.ConfigurationTarget.Global);
   });
@@ -106,11 +130,15 @@ exports.activate = (ctx) => {
   };
 
   // Follow focus through the signals the API offers.
-  // ponytail: sidebar views (e.g. chat in the sidebar) report no focus event, so they update on key press only.
+  // ponytail: sidebar and panel views (chat in the sidebar, debug console) report no focus event,
+  // so they update on key press only.
   const followActiveTab = () => {
     const input = vscode.window.tabGroups.activeTabGroup.activeTab?.input;
     if (input instanceof vscode.TabInputTerminal) setTarget('terminal.integrated');
-    else if (input instanceof vscode.TabInputWebview) /claudeVSCodePanel|chat/i.test(input.viewType) && setTarget('chat');
+    else if (input instanceof vscode.TabInputWebview) {
+      if (/markdown\.preview/.test(input.viewType)) setTarget('markdown.preview');
+      else if (/claudeVSCodePanel|chat/i.test(input.viewType)) setTarget('chat');
+    }
     else if (input) setTarget('editor');
   };
   const { Keyboard, Mouse } = vscode.TextEditorSelectionChangeKind;

@@ -1,7 +1,7 @@
 {
   "name": "focus-font-size",
   "displayName": "Focus Font Size",
-  "description": "Cmd/Ctrl +/- changes the font size of the focused area (editor, chat, terminal) instead of zooming the whole window.",
+  "description": "Cmd/Ctrl +/- changes the font size of the focused area (editor, chat, terminal, debug console, Markdown preview) instead of zooming the whole window.",
   "version": "1.0.0",
   "publisher": "pergelidis",
   "author": "Dimitris Pergelidis",
@@ -17,7 +17,9 @@
     "chat",
     "terminal",
     "claude",
-    "copilot"
+    "copilot",
+    "markdown",
+    "debug console"
   ],
   "engines": {
     "vscode": "^1.93.0"
@@ -64,6 +66,29 @@
         "category": "Font Size"
       }
     ],
+    "configuration": {
+      "title": "Focus Font Size",
+      "properties": {
+        "focusFontSize.step": {
+          "type": "number",
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "markdownDescription": "Amount each `Increase` or `Decrease` changes the font size by."
+        },
+        "focusFontSize.minimum": {
+          "type": "number",
+          "default": 6,
+          "minimum": 1,
+          "markdownDescription": "Smallest font size `Decrease` goes to."
+        },
+        "focusFontSize.maximum": {
+          "type": "number",
+          "default": 100,
+          "minimum": 1,
+          "markdownDescription": "Largest font size `Increase` goes to."
+        }
+      }
+    },
     "keybindings": [
       {
         "key": "ctrl+=",
@@ -200,6 +225,150 @@
           "area": "chat"
         },
         "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+      },
+      {
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+shift+=",
+        "mac": "cmd+shift+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+shift+-",
+        "mac": "cmd+shift+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+numpad0",
+        "mac": "cmd+numpad0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "markdown.preview"
+        },
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+shift+=",
+        "mac": "cmd+shift+=",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "command": "focusFontSize.increase",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+shift+-",
+        "mac": "cmd+shift+-",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "command": "focusFontSize.decrease",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+numpad0",
+        "mac": "cmd+numpad0",
+        "command": "focusFontSize.reset",
+        "args": {
+          "area": "debug.console"
+        },
+        "when": "inDebugRepl"
       },
       {
         "key": "ctrl+=",
