@@ -1,4 +1,4 @@
-# Focus Font Size
+# Quick Font Size
 
 `Cmd +` / `Cmd -` (`Ctrl +` / `Ctrl -` on Windows and Linux) change the font size of the area you are working in, instead of zooming the whole window. `Cmd 0` resets it.
 
@@ -40,7 +40,7 @@ Hide any of the three status bar items by right-clicking the status bar.
 Each command accepts an optional `{ "area": "editor" | "chat" | "terminal.integrated" | "debug.console" | "markdown.preview" | "*" }` argument, so you can bind your own keys:
 
 ```json
-{ "key": "cmd+alt+up", "command": "focusFontSize.increase", "args": { "area": "chat" } }
+{ "key": "cmd+alt+up", "command": "quickFontSize.increase", "args": { "area": "chat" } }
 ```
 
 Without `area`, a command acts on the area shown in the status bar.
@@ -49,9 +49,9 @@ Without `area`, a command acts on the area shown in the status bar.
 
 | Setting | Default | |
 |---|---|---|
-| `focusFontSize.step` | `1` | Amount each increase or decrease changes the size by, e.g. `0.5` or `2`. |
-| `focusFontSize.minimum` | `6` | Smallest size decrease goes to. |
-| `focusFontSize.maximum` | `100` | Largest size increase goes to. |
+| `quickFontSize.step` | `1` | Amount each increase or decrease changes the size by, e.g. `0.5` or `2`. |
+| `quickFontSize.minimum` | `6` | Smallest size decrease goes to. |
+| `quickFontSize.maximum` | `100` | Largest size increase goes to. |
 
 ## Remote development
 
@@ -62,7 +62,7 @@ The extension runs on your local machine, so it also works in Remote-SSH, WSL an
 - If `Cmd +` does nothing while the terminal has focus, add this to your settings:
 
   ```json
-  "terminal.integrated.commandsToSkipShell": ["focusFontSize.increase", "focusFontSize.decrease", "focusFontSize.reset"]
+  "terminal.integrated.commandsToSkipShell": ["quickFontSize.increase", "quickFontSize.decrease", "quickFontSize.reset"]
   ```
 
 - `chat.fontSize` requires a recent VS Code version. On older versions, chat is left unchanged.

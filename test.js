@@ -9,9 +9,9 @@ const store = {
   'editor.lineHeight': { defaultValue: 0, globalValue: 22 },
   'terminal.integrated.fontSize': { defaultValue: 12, workspaceValue: 20 },
   'terminal.integrated.lineHeight': { defaultValue: 1 },
-  'focusFontSize.step': { defaultValue: 1 },
-  'focusFontSize.minimum': { defaultValue: 6 },
-  'focusFontSize.maximum': { defaultValue: 100 },
+  'quickFontSize.step': { defaultValue: 1 },
+  'quickFontSize.minimum': { defaultValue: 6 },
+  'quickFontSize.maximum': { defaultValue: 100 },
 };
 const val = (id) => { const s = store[id] ?? {}; return s.workspaceValue ?? s.globalValue ?? s.defaultValue; };
 
@@ -54,9 +54,9 @@ require('./extension').activate({
 });
 
 (async () => {
-  const inc = commands['focusFontSize.increase'];
-  const dec = commands['focusFontSize.decrease'];
-  const reset = commands['focusFontSize.reset'];
+  const inc = commands['quickFontSize.increase'];
+  const dec = commands['quickFontSize.decrease'];
+  const reset = commands['quickFontSize.reset'];
 
   await Promise.all([1, 2, 3].map(() => inc({ area: 'editor' })));
   assert.strictEqual(val('editor.fontSize'), 17, 'fast repeats must not be lost');
@@ -70,12 +70,12 @@ require('./extension').activate({
   assert.strictEqual(val('editor.fontSize'), 6, 'clamped at minimum');
   assert.strictEqual(val('editor.lineHeight'), 8, 'pixel line height never drops into multiplier range');
 
-  store['focusFontSize.step'].globalValue = 0.1;
-  store['focusFontSize.maximum'].globalValue = 6.2;
+  store['quickFontSize.step'].globalValue = 0.1;
+  store['quickFontSize.maximum'].globalValue = 6.2;
   await Promise.all(Array.from({ length: 5 }, () => inc()));
   assert.strictEqual(val('editor.fontSize'), 6.2, 'custom step without float noise, clamped at custom maximum');
-  store['focusFontSize.step'].globalValue = -3;
-  store['focusFontSize.maximum'].globalValue = undefined;
+  store['quickFontSize.step'].globalValue = -3;
+  store['quickFontSize.maximum'].globalValue = undefined;
   await inc();
   assert.strictEqual(val('editor.fontSize'), 7.2, 'invalid step falls back to 1');
 

@@ -14,7 +14,7 @@ const get = (area) => cfg(area).get('fontSize');
 
 // User settings, guarded against nonsense values the settings UI only warns about.
 const options = () => {
-  const c = cfg('focusFontSize');
+  const c = cfg('quickFontSize');
   const num = (key, fallback) => (Number.isFinite(c.get(key)) ? c.get(key) : fallback);
   const step = num('step', 1);
   const min = Math.max(1, num('minimum', 6));
@@ -40,7 +40,7 @@ const scaleLineHeight = async (area, from, to) => {
 // Serialize read-modify-write so fast key repeats are not lost to a stale read.
 let queue = Promise.resolve();
 const run = (fn) =>
-  (queue = queue.then(fn).catch((e) => vscode.window.showErrorMessage(`Focus Font Size: ${e.message}`)));
+  (queue = queue.then(fn).catch((e) => vscode.window.showErrorMessage(`Quick Font Size: ${e.message}`)));
 
 const change = (area, direction) =>
   run(async () => {
@@ -83,19 +83,19 @@ exports.activate = (ctx) => {
   };
 
   const item = (id, name, priority, command) => {
-    const i = vscode.window.createStatusBarItem(`focusFontSize.${id}`, vscode.StatusBarAlignment.Right, priority);
+    const i = vscode.window.createStatusBarItem(`quickFontSize.${id}`, vscode.StatusBarAlignment.Right, priority);
     Object.assign(i, { name, command });
     return i;
   };
   // Right-aligned: higher priority sits further left. Odd fractional values so
   // no other extension's item lands between the three.
-  const dec = item('decrease', 'Font Size: Decrease', 9999.1103, 'focusFontSize.decrease');
-  const size = item('size', 'Font Size', 9999.1102, 'focusFontSize.chooseArea');
-  const inc = item('increase', 'Font Size: Increase', 9999.1101, 'focusFontSize.increase');
+  const dec = item('decrease', 'Font Size: Decrease', 9999.1103, 'quickFontSize.decrease');
+  const size = item('size', 'Font Size', 9999.1102, 'quickFontSize.chooseArea');
+  const inc = item('increase', 'Font Size: Increase', 9999.1101, 'quickFontSize.increase');
   dec.text = '\u2212'; // text glyphs render smaller than codicons, the API has no size option
   inc.text = '+';
 
-  const cmd = (id, arg) => `command:focusFontSize.${id}?${encodeURIComponent(JSON.stringify([arg]))}`;
+  const cmd = (id, arg) => `command:quickFontSize.${id}?${encodeURIComponent(JSON.stringify([arg]))}`;
 
   function render() {
     const { label, icon } = AREAS[target];
@@ -112,7 +112,7 @@ exports.activate = (ctx) => {
       return `| $(${a.icon}) ${name} | ${get(area) ?? '-'} | [Reset](${cmd('reset', { area })} "Reset to default") |`;
     });
     const tip = new vscode.MarkdownString(['| Font size | | |', '|:--|--:|:--|', ...rows].join('\n'), true);
-    tip.isTrusted = { enabledCommands: ['focusFontSize.chooseArea', 'focusFontSize.reset'] };
+    tip.isTrusted = { enabledCommands: ['quickFontSize.chooseArea', 'quickFontSize.reset'] };
     size.tooltip = tip;
   }
 
@@ -150,10 +150,10 @@ exports.activate = (ctx) => {
     dec,
     size,
     inc,
-    vscode.commands.registerCommand('focusFontSize.increase', act((a) => change(a, 1))),
-    vscode.commands.registerCommand('focusFontSize.decrease', act((a) => change(a, -1))),
-    vscode.commands.registerCommand('focusFontSize.reset', act(reset)),
-    vscode.commands.registerCommand('focusFontSize.chooseArea', chooseArea),
+    vscode.commands.registerCommand('quickFontSize.increase', act((a) => change(a, 1))),
+    vscode.commands.registerCommand('quickFontSize.decrease', act((a) => change(a, -1))),
+    vscode.commands.registerCommand('quickFontSize.reset', act(reset)),
+    vscode.commands.registerCommand('quickFontSize.chooseArea', chooseArea),
     vscode.window.tabGroups.onDidChangeTabGroups(followActiveTab),
     // Only the active tab: background tabs change too, e.g. when files are edited by another tool.
     vscode.window.tabGroups.onDidChangeTabs((e) => e.changed.some((t) => t.isActive && t.group.isActive) && followActiveTab()),

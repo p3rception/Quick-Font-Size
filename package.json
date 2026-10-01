@@ -1,6 +1,6 @@
 {
-  "name": "focus-font-size",
-  "displayName": "Focus Font Size",
+  "name": "quick-font-size",
+  "displayName": "Quick Font Size",
   "description": "Cmd/Ctrl +/- changes the font size of the focused area (editor, chat, terminal, debug console, Markdown preview) instead of zooming the whole window.",
   "version": "1.0.0",
   "publisher": "pergelidis",
@@ -46,42 +46,42 @@
   "contributes": {
     "commands": [
       {
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "title": "Increase",
         "category": "Font Size"
       },
       {
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "title": "Decrease",
         "category": "Font Size"
       },
       {
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "title": "Reset to Default",
         "category": "Font Size"
       },
       {
-        "command": "focusFontSize.chooseArea",
+        "command": "quickFontSize.chooseArea",
         "title": "Choose Status Bar Area",
         "category": "Font Size"
       }
     ],
     "configuration": {
-      "title": "Focus Font Size",
+      "title": "Quick Font Size",
       "properties": {
-        "focusFontSize.step": {
+        "quickFontSize.step": {
           "type": "number",
           "default": 1,
           "exclusiveMinimum": 0,
           "markdownDescription": "Amount each `Increase` or `Decrease` changes the font size by."
         },
-        "focusFontSize.minimum": {
+        "quickFontSize.minimum": {
           "type": "number",
           "default": 6,
           "minimum": 1,
           "markdownDescription": "Smallest font size `Decrease` goes to."
         },
-        "focusFontSize.maximum": {
+        "quickFontSize.maximum": {
           "type": "number",
           "default": 100,
           "minimum": 1,
@@ -93,7 +93,7 @@
       {
         "key": "ctrl+=",
         "mac": "cmd+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "editor"
         }
@@ -101,7 +101,7 @@
       {
         "key": "ctrl+shift+=",
         "mac": "cmd+shift+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "editor"
         }
@@ -109,7 +109,7 @@
       {
         "key": "ctrl+numpad_add",
         "mac": "cmd+numpad_add",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "editor"
         }
@@ -117,7 +117,7 @@
       {
         "key": "ctrl+-",
         "mac": "cmd+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "editor"
         }
@@ -125,7 +125,7 @@
       {
         "key": "ctrl+shift+-",
         "mac": "cmd+shift+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "editor"
         }
@@ -133,7 +133,7 @@
       {
         "key": "ctrl+numpad_subtract",
         "mac": "cmd+numpad_subtract",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "editor"
         }
@@ -141,7 +141,7 @@
       {
         "key": "ctrl+0",
         "mac": "cmd+0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "editor"
         }
@@ -149,7 +149,7 @@
       {
         "key": "ctrl+numpad0",
         "mac": "cmd+numpad0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "editor"
         }
@@ -157,7 +157,7 @@
       {
         "key": "ctrl+=",
         "mac": "cmd+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "chat"
         },
@@ -166,7 +166,7 @@
       {
         "key": "ctrl+shift+=",
         "mac": "cmd+shift+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "chat"
         },
@@ -175,7 +175,7 @@
       {
         "key": "ctrl+numpad_add",
         "mac": "cmd+numpad_add",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "chat"
         },
@@ -184,7 +184,7 @@
       {
         "key": "ctrl+-",
         "mac": "cmd+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "chat"
         },
@@ -193,7 +193,7 @@
       {
         "key": "ctrl+shift+-",
         "mac": "cmd+shift+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "chat"
         },
@@ -202,7 +202,7 @@
       {
         "key": "ctrl+numpad_subtract",
         "mac": "cmd+numpad_subtract",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "chat"
         },
@@ -211,7 +211,7 @@
       {
         "key": "ctrl+0",
         "mac": "cmd+0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "chat"
         },
@@ -220,7 +220,7 @@
       {
         "key": "ctrl+numpad0",
         "mac": "cmd+numpad0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "chat"
         },
@@ -229,7 +229,7 @@
       {
         "key": "ctrl+=",
         "mac": "cmd+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "markdown.preview"
         },
@@ -238,7 +238,7 @@
       {
         "key": "ctrl+shift+=",
         "mac": "cmd+shift+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "markdown.preview"
         },
@@ -247,7 +247,7 @@
       {
         "key": "ctrl+numpad_add",
         "mac": "cmd+numpad_add",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "markdown.preview"
         },
@@ -256,7 +256,7 @@
       {
         "key": "ctrl+-",
         "mac": "cmd+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "markdown.preview"
         },
@@ -265,7 +265,7 @@
       {
         "key": "ctrl+shift+-",
         "mac": "cmd+shift+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "markdown.preview"
         },
@@ -274,7 +274,7 @@
       {
         "key": "ctrl+numpad_subtract",
         "mac": "cmd+numpad_subtract",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "markdown.preview"
         },
@@ -283,7 +283,7 @@
       {
         "key": "ctrl+0",
         "mac": "cmd+0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "markdown.preview"
         },
@@ -292,7 +292,7 @@
       {
         "key": "ctrl+numpad0",
         "mac": "cmd+numpad0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "markdown.preview"
         },
@@ -301,7 +301,7 @@
       {
         "key": "ctrl+=",
         "mac": "cmd+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "debug.console"
         },
@@ -310,7 +310,7 @@
       {
         "key": "ctrl+shift+=",
         "mac": "cmd+shift+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "debug.console"
         },
@@ -319,7 +319,7 @@
       {
         "key": "ctrl+numpad_add",
         "mac": "cmd+numpad_add",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "debug.console"
         },
@@ -328,7 +328,7 @@
       {
         "key": "ctrl+-",
         "mac": "cmd+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "debug.console"
         },
@@ -337,7 +337,7 @@
       {
         "key": "ctrl+shift+-",
         "mac": "cmd+shift+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "debug.console"
         },
@@ -346,7 +346,7 @@
       {
         "key": "ctrl+numpad_subtract",
         "mac": "cmd+numpad_subtract",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "debug.console"
         },
@@ -355,7 +355,7 @@
       {
         "key": "ctrl+0",
         "mac": "cmd+0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "debug.console"
         },
@@ -364,7 +364,7 @@
       {
         "key": "ctrl+numpad0",
         "mac": "cmd+numpad0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "debug.console"
         },
@@ -373,7 +373,7 @@
       {
         "key": "ctrl+=",
         "mac": "cmd+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "terminal.integrated"
         },
@@ -382,7 +382,7 @@
       {
         "key": "ctrl+shift+=",
         "mac": "cmd+shift+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "terminal.integrated"
         },
@@ -391,7 +391,7 @@
       {
         "key": "ctrl+numpad_add",
         "mac": "cmd+numpad_add",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "terminal.integrated"
         },
@@ -400,7 +400,7 @@
       {
         "key": "ctrl+-",
         "mac": "cmd+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "terminal.integrated"
         },
@@ -409,7 +409,7 @@
       {
         "key": "ctrl+shift+-",
         "mac": "cmd+shift+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "terminal.integrated"
         },
@@ -418,7 +418,7 @@
       {
         "key": "ctrl+numpad_subtract",
         "mac": "cmd+numpad_subtract",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "terminal.integrated"
         },
@@ -427,7 +427,7 @@
       {
         "key": "ctrl+0",
         "mac": "cmd+0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "terminal.integrated"
         },
@@ -436,7 +436,7 @@
       {
         "key": "ctrl+numpad0",
         "mac": "cmd+numpad0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "terminal.integrated"
         },
@@ -445,7 +445,7 @@
       {
         "key": "ctrl+alt+=",
         "mac": "cmd+alt+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "*"
         }
@@ -453,7 +453,7 @@
       {
         "key": "ctrl+alt+shift+=",
         "mac": "cmd+alt+shift+=",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "*"
         }
@@ -461,7 +461,7 @@
       {
         "key": "ctrl+alt+numpad_add",
         "mac": "cmd+alt+numpad_add",
-        "command": "focusFontSize.increase",
+        "command": "quickFontSize.increase",
         "args": {
           "area": "*"
         }
@@ -469,7 +469,7 @@
       {
         "key": "ctrl+alt+-",
         "mac": "cmd+alt+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "*"
         }
@@ -477,7 +477,7 @@
       {
         "key": "ctrl+alt+shift+-",
         "mac": "cmd+alt+shift+-",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "*"
         }
@@ -485,7 +485,7 @@
       {
         "key": "ctrl+alt+numpad_subtract",
         "mac": "cmd+alt+numpad_subtract",
-        "command": "focusFontSize.decrease",
+        "command": "quickFontSize.decrease",
         "args": {
           "area": "*"
         }
@@ -493,7 +493,7 @@
       {
         "key": "ctrl+alt+0",
         "mac": "cmd+alt+0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "*"
         }
@@ -501,7 +501,7 @@
       {
         "key": "ctrl+alt+numpad0",
         "mac": "cmd+alt+numpad0",
-        "command": "focusFontSize.reset",
+        "command": "quickFontSize.reset",
         "args": {
           "area": "*"
         }
