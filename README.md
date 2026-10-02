@@ -1,5 +1,7 @@
 # Quick Font Size
 
+![Cmd + and Cmd - change the editor, terminal and chat font sizes separately](images/demo.gif)
+
 `Cmd +` / `Cmd -` (`Ctrl +` / `Ctrl -` on Windows and Linux) change the font size of the area you are working in, instead of zooming the whole window. `Cmd 0` resets it.
 
 | Focus | Setting changed |
