@@ -4,6 +4,10 @@
 
 Change the font size of the area you are working in, instead of zooming the whole window.
 
+## Install
+
+Available on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=p3rception.quick-font-size), or run `ext install p3rception.quick-font-size` in Quick Open (`Cmd P` / `Ctrl P`).
+
 ## Supported Areas
 
 |                                                                   |                                     |
