@@ -12,6 +12,8 @@
 
 Add `Alt` (`Cmd+Alt +`, `Cmd+Alt -`, `Cmd+Alt 0`) to change all areas at once. On Windows, use `Ctrl+Shift+Alt` instead: Windows reports `AltGr` as `Ctrl+Alt`, and `Ctrl+Alt 0` would catch `AltGr 0`, which types `}` on many keyboard layouts.
 
+To zoom the whole window, run **View: Zoom In** or **View: Zoom Out** from the Command Palette.
+
 Sizes are saved to your settings, so they persist across windows and restarts. If a workspace overrides a size, the workspace value is changed, so the change is always visible.
 
 If `editor.lineHeight` or `debug.console.lineHeight` is set in pixels, it is scaled along with the font so text keeps the same spacing. Line heights set as a multiplier already follow the font and are left alone.
