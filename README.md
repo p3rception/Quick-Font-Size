@@ -6,14 +6,14 @@ Change the font size of the area you are working in, instead of zooming the whol
 
 ## Supported Areas
 
-|                                                                   |                                          |
-| :---------------------------------------------------------------: | ---------------------------------------- |
-|     <img src="images/areas/file-code.png" width="20" alt="">      | Editor                                   |
-| <img src="images/areas/comment-discussion.png" width="20" alt=""> | Integrated Chat (Codex, Copilot, Claude) |
-|      <img src="images/areas/terminal.png" width="20" alt="">      | Terminal                                 |
-|   <img src="images/areas/debug-console.png" width="20" alt="">    | Debug Console                            |
-|      <img src="images/areas/markdown.png" width="20" alt="">      | Markdown Preview                         |
-|                                                                   |                                          |
+|                                                                   |                                     |
+| :---------------------------------------------------------------: | ----------------------------------- |
+|     <img src="images/areas/file-code.png" width="20" alt="">      | Editor                              |
+| <img src="images/areas/comment-discussion.png" width="20" alt=""> | Agent Chat (Codex, Copilot, Claude) |
+|      <img src="images/areas/terminal.png" width="20" alt="">      | Terminal                            |
+|   <img src="images/areas/debug-console.png" width="20" alt="">    | Debug Console                       |
+|      <img src="images/areas/markdown.png" width="20" alt="">      | Markdown Preview                    |
+|                                                                   |                                     |
 
 ## Keybindings
 
@@ -22,9 +22,9 @@ Change the font size of the area you are working in, instead of zooming the whol
 | Increase focused area | `Cmd +`     | `Ctrl +`           | `Ctrl +`     |
 | Decrease focused area | `Cmd -`     | `Ctrl -`           | `Ctrl -`     |
 | Reset focused area    | `Cmd 0`     | `Ctrl 0`           | `Ctrl 0`     |
-| Increase all areas    | `Cmd Alt +` | `Ctrl Shift Alt +` | `Ctrl Alt +` |
-| Decrease all areas    | `Cmd Alt -` | `Ctrl Shift Alt -` | `Ctrl Alt -` |
-| Reset all areas       | `Cmd Alt 0` | `Ctrl Shift Alt 0` | `Ctrl Alt 0` |
+| Increase all areas    | `Cmd Option +` | `Ctrl Shift Alt +` | `Ctrl Alt +` |
+| Decrease all areas    | `Cmd Option -` | `Ctrl Shift Alt -` | `Ctrl Alt -` |
+| Reset all areas       | `Cmd Option 0` | `Ctrl Shift Alt 0` | `Ctrl Alt 0` |
 
 Shift and numpad variants also work. To zoom the whole window, run **View: Zoom In** / **View: Zoom Out**.
 
