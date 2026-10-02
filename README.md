@@ -4,7 +4,15 @@
 
 Change the font size of the area you are working in, instead of zooming the whole window.
 
-Areas: Editor, Chat (Copilot Chat, Claude Code), Terminal, Debug Console, Markdown Preview.
+## Areas
+
+| | Area |
+|:-:|---|
+| <img src="images/areas/file-code.png" width="20" alt=""> | Editor |
+| <img src="images/areas/comment-discussion.png" width="20" alt=""> | Chat (Copilot Chat, Claude Code) |
+| <img src="images/areas/terminal.png" width="20" alt=""> | Terminal |
+| <img src="images/areas/debug-console.png" width="20" alt=""> | Debug Console |
+| <img src="images/areas/markdown.png" width="20" alt=""> | Markdown Preview |
 
 ## Keybindings
 
@@ -60,3 +68,4 @@ Shift and numpad variants also work. To zoom the whole window, run **View: Zoom 
   ```
 
 - Runs locally, so it works in Remote-SSH, WSL and Dev Container windows without a remote install.
+- Area icons are [Codicons](https://github.com/microsoft/vscode-codicons) by Microsoft, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
