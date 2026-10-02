@@ -170,7 +170,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+shift+=",
@@ -179,7 +179,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+numpad_add",
@@ -188,7 +188,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+-",
@@ -197,7 +197,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+shift+-",
@@ -206,7 +206,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+numpad_subtract",
@@ -215,7 +215,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+0",
@@ -224,7 +224,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+numpad0",
@@ -233,7 +233,7 @@
         "args": {
           "area": "chat"
         },
-        "when": "inChat || focusedView == 'claudeVSCodeSidebar' || focusedView == 'claudeVSCodeSidebarSecondary' || activeWebviewPanelId == 'claudeVSCodePanel'"
+        "when": "inChat || activeWebviewPanelId == 'claudeVSCodePanel' || (claude-vscode.sideBarActive && !editorFocus && !panelFocus)"
       },
       {
         "key": "ctrl+=",
