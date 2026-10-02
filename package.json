@@ -444,6 +444,7 @@
       },
       {
         "key": "ctrl+alt+=",
+        "win": "ctrl+shift+alt+=",
         "mac": "cmd+alt+=",
         "command": "quickFontSize.increase",
         "args": {
@@ -452,6 +453,7 @@
       },
       {
         "key": "ctrl+alt+shift+=",
+        "win": "ctrl+shift+alt+=",
         "mac": "cmd+alt+shift+=",
         "command": "quickFontSize.increase",
         "args": {
@@ -468,6 +470,7 @@
       },
       {
         "key": "ctrl+alt+-",
+        "win": "ctrl+shift+alt+-",
         "mac": "cmd+alt+-",
         "command": "quickFontSize.decrease",
         "args": {
@@ -476,6 +479,7 @@
       },
       {
         "key": "ctrl+alt+shift+-",
+        "win": "ctrl+shift+alt+-",
         "mac": "cmd+alt+shift+-",
         "command": "quickFontSize.decrease",
         "args": {
@@ -492,6 +496,7 @@
       },
       {
         "key": "ctrl+alt+0",
+        "win": "ctrl+shift+alt+0",
         "mac": "cmd+alt+0",
         "command": "quickFontSize.reset",
         "args": {

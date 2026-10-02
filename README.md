@@ -10,7 +10,7 @@
 | Debug Console | `debug.console.fontSize` |
 | Markdown Preview | `markdown.preview.fontSize` |
 
-Add `Alt` (`Cmd+Alt +`, `Cmd+Alt -`, `Cmd+Alt 0`) to change all areas at once.
+Add `Alt` (`Cmd+Alt +`, `Cmd+Alt -`, `Cmd+Alt 0`) to change all areas at once. On Windows, use `Ctrl+Shift+Alt` instead: Windows reports `AltGr` as `Ctrl+Alt`, and `Ctrl+Alt 0` would catch `AltGr 0`, which types `}` on many keyboard layouts.
 
 Sizes are saved to your settings, so they persist across windows and restarts. If a workspace overrides a size, the workspace value is changed, so the change is always visible.
 
