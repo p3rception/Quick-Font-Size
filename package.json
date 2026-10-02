@@ -2,7 +2,7 @@
   "name": "quick-font-size",
   "displayName": "Quick Font Size",
   "description": "Cmd/Ctrl +/- changes the font size of the focused area (editor, chat, terminal, debug console, Markdown preview) instead of zooming the whole window.",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "publisher": "p3rception",
   "author": "Dimitris Pergelidis",
   "license": "MIT",
