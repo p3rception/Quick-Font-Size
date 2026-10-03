@@ -10,14 +10,13 @@ Available on the [VS Code Marketplace](https://marketplace.visualstudio.com/item
 
 ## Supported Areas
 
-|                                                                   |                                     |
-| :---------------------------------------------------------------: | ----------------------------------- |
-|     <img src="images/areas/file-code.png" width="20" alt="">      | Editor                              |
-| <img src="images/areas/comment-discussion.png" width="20" alt=""> | Agent Chat (Codex, Copilot, Claude) |
-|      <img src="images/areas/terminal.png" width="20" alt="">      | Terminal                            |
-|   <img src="images/areas/debug-console.png" width="20" alt="">    | Debug Console                       |
-|      <img src="images/areas/markdown.png" width="20" alt="">      | Markdown Preview                    |
-|                                                                   |                                     |
+<table>
+<tr><td align="center"><img src="images/areas/file-code.png" width="20" alt=""></td><td>Editor</td></tr>
+<tr><td align="center"><img src="images/areas/comment-discussion.png" width="20" alt=""></td><td>Agent Chat (Codex, Copilot, Claude)</td></tr>
+<tr><td align="center"><img src="images/areas/terminal.png" width="20" alt=""></td><td>Terminal</td></tr>
+<tr><td align="center"><img src="images/areas/debug-console.png" width="20" alt=""></td><td>Debug Console</td></tr>
+<tr><td align="center"><img src="images/areas/markdown.png" width="20" alt=""></td><td>Markdown Preview</td></tr>
+</table>
 
 ## Keybindings
 
